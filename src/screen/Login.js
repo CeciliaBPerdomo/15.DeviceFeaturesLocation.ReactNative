@@ -10,24 +10,45 @@ import SubmitButton from '../components/SubmitButton'
 import { useLoginMutation } from '../app/services/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from "../features/auth/authSlice"
+import { loginSchema } from '../utils/validaciones/authSchema'
 
 
-const Login = ({navigation}) => {
+const Login = ({ navigation }) => {
 
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const [errorMail, setErrorMail] = useState("")
+    const [errorPassword, setErrorPassword] = useState("")
+
     const [triggerLogin] = useLoginMutation()
 
     const onSubmit = async () => {
-        const { data } = await triggerLogin({email, password})
-        //console.log(data)
-        dispatch(setUser({
-            email: data.email,
-            idToken: data.idToken
-        }))
+        try {
+            loginSchema.validateSync({ email, password })
+            const { data } = await triggerLogin({ email, password })
+            
+            dispatch(setUser({
+                email: data.email,
+                idToken: data.idToken
+            }))
+        } catch (error) {
+            setErrorMail("")
+            setPassword("")
+
+            switch (error.path) {
+                case "email":
+                    setErrorMail(error.message)
+                    break
+                case "password":
+                    setErrorPassword(error.message)
+                    break
+                default:
+                    break
+            }
+        }
     }
     return (
         <View style={styles.main}>
@@ -38,7 +59,7 @@ const Login = ({navigation}) => {
                     value={email}
                     onChangeText={(t) => setEmail(t)}
                     isSecure={false}
-                    error=""
+                    error={errorMail}
                 />
 
                 <InputForm
@@ -46,11 +67,11 @@ const Login = ({navigation}) => {
                     value={password}
                     onChangeText={(t) => setPassword(t)}
                     isSecure={true}
-                    error=""
+                    error={errorPassword}
                 />
 
                 <SubmitButton onPress={onSubmit} title="Iniciar Sesión" />
-                <Text style={styles.sub}>No tienes cuenta?</Text> 
+                <Text style={styles.sub}>No tienes cuenta?</Text>
 
                 <Pressable onPress={() => navigation.navigate("Register")}>
                     <Text style={styles.subLink}>Registrate</Text>
@@ -93,7 +114,7 @@ const styles = StyleSheet.create({
 
     subLink: {
         fontSize: 14,
-        fontFamily: fonts.JosefinSlabBold, 
+        fontFamily: fonts.JosefinSlabBold,
         color: "blue"
     },
 })

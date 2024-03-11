@@ -12,10 +12,9 @@ const MainNavigation = () => {
 
     const user = useSelector((state) => state.auth)
 
-    useEffect(() => {
-       console.log("useEffect", user)
-    }, [user])
-
+    // useEffect(() => {
+    //    console.log("useEffect", user)
+    // }, [user])
 
     return (
             <NavigationContainer>

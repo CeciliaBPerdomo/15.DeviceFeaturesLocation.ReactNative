@@ -28,6 +28,9 @@
 - `Redux`:
     - npm install @reduxjs/toolkit react-redux
 
+- `Yup`:
+    - npm install yup
+
 ## 📃 Documentación: 
     - Fuentes: https://docs.expo.dev/versions/latest/sdk/font/
     - Iconos: https://oblador.github.io/react-native-vector-icons/
@@ -35,6 +38,7 @@
     - Redux: https://redux-toolkit.js.org/tutorials/quick-start
     - Redux Query: https://redux-toolkit.js.org/rtk-query/overview
     - Firebase Auth: https://firebase.google.com/docs/reference/rest/auth?hl=es-419
+    - Yup: https://www.npmjs.com/package/yup
 
 ## 📖 Información útil
     - Json: https://dummyjson.com/#google_vignette
