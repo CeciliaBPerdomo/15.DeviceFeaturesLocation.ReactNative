@@ -1,18 +1,22 @@
 import { Image, StyleSheet, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 
 import AddButton from '../components/AddButton'
-import { usePutImageMutation } from '../app/services/profile';
+import { useGetImageQuery, usePutImageMutation } from '../app/services/profile';
 import { useSelector } from 'react-redux';
 
 const ImageSelector = ({ navigation }) => {
     const [image, setImage] = useState("")
     const [triggerPutImage] = usePutImageMutation()
     const localId = useSelector((state) => state.auth.localId)
+    const { data, isSuccess } = useGetImageQuery(localId)
+
+    useEffect(() => {
+        if (isSuccess && data) setImage(data.image)
+    }, [isSuccess, data])
 
     const confirmImage = () => {
-        console.log(localId)
         triggerPutImage({ image, localId })
         navigation.goBack()
     }
