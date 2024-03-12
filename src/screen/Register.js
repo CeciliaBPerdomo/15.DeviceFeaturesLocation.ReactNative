@@ -34,7 +34,8 @@ const Register = ({ navigation }) => {
             const { data } = await triggerRegister({ email, password })
             dispatch(setUser({
                 email: data.email,
-                idToken: data.idToken
+                idToken: data.idToken,
+                localId: data.localId
             }))
         } catch (error) {
             

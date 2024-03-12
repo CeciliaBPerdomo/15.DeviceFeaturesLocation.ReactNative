@@ -32,7 +32,8 @@ const Login = ({ navigation }) => {
             
             dispatch(setUser({
                 email: data.email,
-                idToken: data.idToken
+                idToken: data.idToken,
+                localId: data.localId
             }))
         } catch (error) {
             setErrorMail("")

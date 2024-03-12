@@ -31,6 +31,9 @@
 - `Yup`:
     - npm install yup
 
+- `Image Picker`: 
+    - npx expo install expo-image-picker
+
 ## 📃 Documentación: 
     - Fuentes: https://docs.expo.dev/versions/latest/sdk/font/
     - Iconos: https://oblador.github.io/react-native-vector-icons/
@@ -39,6 +42,7 @@
     - Redux Query: https://redux-toolkit.js.org/rtk-query/overview
     - Firebase Auth: https://firebase.google.com/docs/reference/rest/auth?hl=es-419
     - Yup: https://www.npmjs.com/package/yup
+    - Image picker: https://docs.expo.dev/versions/latest/sdk/imagepicker/
 
 ## 📖 Información útil
     - Json: https://dummyjson.com/#google_vignette
