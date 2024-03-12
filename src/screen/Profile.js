@@ -12,15 +12,24 @@ const Profile = ({ navigation }) => {
             <Image
                 source={
                     data ? { uri: data.image } :
-                    require("../../assets/user.png")
+                        require("../../assets/user.png")
                 }
                 style={styles.image}
                 resizeMode='cover'
             />
 
+            <Text style={styles.text}>
+                Direccion
+            </Text>
+
             <AddButton
                 title="Agregar imagen de perfil"
                 onPress={() => navigation.navigate("ImageSelector")}
+            />
+
+            <AddButton
+                title="Agregar dirección"
+                onPress={() => navigation.navigate("LocationSelector")}
             />
         </View>
     )
@@ -34,9 +43,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 20
     },
+
     image: {
         width: 200,
         height: 200,
         borderRadius: 100
+    },
+
+    text: {
+        marginVertical: 15,
+        fontSize: 16
     }
 })

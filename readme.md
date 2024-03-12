@@ -32,7 +32,10 @@
     - npm install yup
 
 - `Image Picker`: 
-    - npx expo install expo-image-picker
+    - npm install expo-image-picker
+
+- `Expo Location`:
+    - npm install expo-location
 
 ## 📃 Documentación: 
     - Fuentes: https://docs.expo.dev/versions/latest/sdk/font/
@@ -43,6 +46,11 @@
     - Firebase Auth: https://firebase.google.com/docs/reference/rest/auth?hl=es-419
     - Yup: https://www.npmjs.com/package/yup
     - Image picker: https://docs.expo.dev/versions/latest/sdk/imagepicker/
+    - Google Maps: 
+        - https://developers.google.com/maps/documentation/maps-static/overview?hl=es-419
+        - https://www.cloud.google.com
+    - Expo Location: https://docs.expo.dev/versions/latest/sdk/location/
+
 
 ## 📖 Información útil
     - Json: https://dummyjson.com/#google_vignette
