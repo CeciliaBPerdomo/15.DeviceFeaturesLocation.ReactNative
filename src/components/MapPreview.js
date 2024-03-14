@@ -6,10 +6,10 @@ const API_KEY = Constants.expoConfig.extra.MAP_API_KEY;
 const MapPreview = ({ latitude, longitude }) => {
 
     const mapPreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}
-    &zoom=13
+    &zoom=15
     &size=600x300
     &maptype=roadmap
-    &markers=color:blue%7Clabel:S%7C40.702147,-74.015794
+    &markers=color:blue%7Clabel:S%7C${latitude},${longitude}
     &key=${API_KEY}`
 
     return (

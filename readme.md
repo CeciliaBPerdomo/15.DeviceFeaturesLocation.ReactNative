@@ -49,6 +49,7 @@
     - Google Maps: 
         - https://developers.google.com/maps/documentation/maps-static/overview?hl=es-419
         - https://www.cloud.google.com
+        - https://developers.google.com/maps/documentation/geocoding/requests-reverse-geocoding?hl=es-419
     - Expo Location: https://docs.expo.dev/versions/latest/sdk/location/
     - .env: https://miguelquispe.com/blog/variables-de-entorno-expo-react-native
 

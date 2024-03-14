@@ -1,8 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
-import MapPreview from '../components/MapPreview'
+import React, { useEffect, useState } from 'react'
 
+import MapPreview from '../components/MapPreview'
 import AddButton from '../components/AddButton'
+
+// Expo Location
+import * as Location from "expo-location"
+import Constants from "expo-constants"
+
+const API_KEY = Constants.expoConfig.extra.MAP_API_KEY;
 
 const LocationSelector = ({ navigation }) => {
     const [location, setLocation] = useState({
@@ -11,7 +17,36 @@ const LocationSelector = ({ navigation }) => {
     })
 
     const [errorMsg, setErrorMsg] = useState(null)
-    const [address, setAdress] = useState("Colonia")
+    const [address, setAdress] = useState("")
+
+    useEffect(() => {
+        // Funcion asincronica anonima
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync()
+            if (status != "granted") {
+                setErrorMsg("Permisos denegado")
+                return
+            } else {
+                let location = await Location.getCurrentPositionAsync()
+                setLocation({
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude
+                })
+            }
+        })()
+
+    }, [])
+
+    useEffect(() => {
+        (async () => {
+            if (location.latitude) {
+                const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.latitude},${location.longitude}&key=${API_KEY}`)
+                const data = await response.json()
+                setAdress(data.results[0].formatted_address)
+            }
+        })()
+    }, [location])
+
 
     const onConfirmAddress = () => {
         console.log("Confirmado")
@@ -26,8 +61,8 @@ const LocationSelector = ({ navigation }) => {
 
             {/* Latitud: -34.463481 | Longitud: -57.832339 */}
             <MapPreview
-                latitude="-34.463481" // {location.latitude}
-                longitude="-57.832339" // {location.longitude}
+                latitude={location.latitude}
+                longitude={location.longitude}
             />
 
             <AddButton
