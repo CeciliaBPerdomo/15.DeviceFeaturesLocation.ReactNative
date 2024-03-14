@@ -1,16 +1,16 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Image } from 'react-native'
+import Constants from "expo-constants"
+
+const API_KEY = Constants.expoConfig.extra.MAP_API_KEY;
 
 const MapPreview = ({ latitude, longitude }) => {
 
-    const YOUR_API_KEY = "AIzaSyBj749kc3OVwi0FxBt2EaIha_ByTPPZxFw"
-
     const mapPreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}
-        &zoom=13
-        &size=600x300
-        &maptype=roadmap
-        &markers=color:blue%7Clabel:S%7C${latitude},${longitude}
-        &key=${YOUR_API_KEY}`
+    &zoom=13
+    &size=600x300
+    &maptype=roadmap
+    &markers=color:blue%7Clabel:S%7C40.702147,-74.015794
+    &key=${API_KEY}`
 
     return (
         <Image

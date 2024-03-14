@@ -50,7 +50,7 @@
         - https://developers.google.com/maps/documentation/maps-static/overview?hl=es-419
         - https://www.cloud.google.com
     - Expo Location: https://docs.expo.dev/versions/latest/sdk/location/
-
+    - .env: https://miguelquispe.com/blog/variables-de-entorno-expo-react-native
 
 ## 📖 Información útil
     - Json: https://dummyjson.com/#google_vignette
