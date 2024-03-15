@@ -8,6 +8,10 @@ import AddButton from '../components/AddButton'
 import * as Location from "expo-location"
 import Constants from "expo-constants"
 
+// Redux
+import { useSelector } from 'react-redux'
+import { usePutUserLocationMutation } from '../app/services/profile'
+
 const API_KEY = Constants.expoConfig.extra.MAP_API_KEY;
 
 const LocationSelector = ({ navigation }) => {
@@ -18,6 +22,9 @@ const LocationSelector = ({ navigation }) => {
 
     const [errorMsg, setErrorMsg] = useState(null)
     const [address, setAdress] = useState("")
+
+    const localId = useSelector((state) => state.auth.localId)
+    const [triggerUserLocation] = usePutUserLocationMutation()
 
     useEffect(() => {
         // Funcion asincronica anonima
@@ -48,8 +55,19 @@ const LocationSelector = ({ navigation }) => {
     }, [location])
 
 
-    const onConfirmAddress = () => {
+    const onConfirmAddress = async () => {
         console.log("Confirmado")
+
+        const locationFormatted = {
+            address,
+            location
+        }
+
+        await triggerUserLocation({
+            localId,
+            locationFormatted
+        })
+
         navigation.goBack()
     }
 
